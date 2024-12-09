@@ -116,7 +116,7 @@ func (c *Client) doRequest(ctx context.Context, RespBodyWriter io.Writer, method
 			return err
 		}
 		switch resp.StatusCode {
-		case http.StatusBadRequest, http.StatusUnauthorized:
+		case http.StatusBadRequest, http.StatusUnauthorized, http.StatusTooManyRequests:
 			apiErr := &APIError{}
 			if err := json.Unmarshal(respBody, apiErr); err != nil {
 				return err
